@@ -87,9 +87,9 @@ export async function POST(request: NextRequest) {
 
     const prompt = PROMPTS[period] || PROMPTS["3months"];
 
-    // 画像生成リクエスト
+    // 画像生成リクエスト（元のローカルアプリと同じモデルを使用）
     const response = await ai.models.generateContent({
-      model: "gemini-2.0-flash-exp-image-generation",
+      model: "gemini-3-pro-image-preview",
       contents: [
         {
           role: "user",
@@ -104,9 +104,6 @@ export async function POST(request: NextRequest) {
           ],
         },
       ],
-      config: {
-        responseModalities: ["TEXT", "IMAGE"],
-      },
     });
 
     // レスポンスから画像を探す
